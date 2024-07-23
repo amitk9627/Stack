@@ -1,0 +1,24 @@
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        String str = "({])";
+        boolean bool = false;
+        Stack<Character> st = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            // for closing bracket }])
+            if (ch == ']' || ch == '}' || ch == ')') {
+                if (st.isEmpty()) bool = false; // Stack is Empty
+                else if (st.peek() == '[' && ch == ']' ||
+                        st.peek() == '{' && ch == '}' ||
+                        st.peek() == '(' && ch == ')') {
+                    st.pop();
+                }
+                else bool=false;
+            }
+            else st.push(ch); // for opening {[(add in Stack
+        }
+        System.out.println(st.isEmpty());
+    }
+}
